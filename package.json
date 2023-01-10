@@ -1,0 +1,14 @@
+{
+  "name": "aegis",
+  "version": "1.0.0",
+  "scripts": {
+    "install_library": "python setup.py install",
+    "freeze": "pip freeze > uninstall.txt",
+    "uninstall_library": "npm run freeze && pip uninstall -r uninstall.txt -y",
+    "clean": "rimraf build dist results src/robotframework_aegis.egg-info",
+    "build": "npm run clean && npm run uninstall_library && npm run install_library"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
