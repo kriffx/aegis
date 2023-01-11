@@ -1,6 +1,7 @@
 from datetime import timedelta
 from typing import Optional
 from SeleniumLibrary import SeleniumLibrary
+from .gherkin import Browser
 
 class Aegis(SeleniumLibrary):
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
@@ -15,3 +16,4 @@ class Aegis(SeleniumLibrary):
         event_firing_webdriver: Optional[str] = None,
     ):
         SeleniumLibrary.__init__(self, timeout, implicit_wait, run_on_failure, screenshot_root_directory, plugins, event_firing_webdriver)
+        SeleniumLibrary.add_library_components(self, [Browser(self)])
