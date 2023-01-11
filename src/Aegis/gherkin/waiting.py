@@ -49,19 +49,19 @@ class Waiting(LibraryComponent):
     def wait_until_location_does_not_contain(self, location: str) -> None:
         self.wait_until_location_does_not_contain_timeout(location=location, timeout=None)
     
-    @keyword("I wait until page contains ${text} with ${timeout} timeout")
+    @keyword("I wait until page contains ${text} text with ${timeout} timeout")
     def wait_until_page_contains_timeout(self, text: str, timeout: Optional[timedelta] = None) -> None:
         self.waiting.wait_until_page_contains(text=text, timeout=timeout)
     
-    @keyword("I wait until page contains ${text}")
+    @keyword("I wait until page contains ${text} text")
     def wait_until_page_contains(self, text: str) -> None:
         self.wait_until_page_contains_timeout(text=text, timeout=None)
     
-    @keyword("I wait until page does not contain ${text} with ${timeout} timeout")
+    @keyword("I wait until page does not contain ${text} text with ${timeout} timeout")
     def wait_until_page_does_not_contain_timeout(self, text: str, timeout: Optional[timedelta] = None) -> None:
         self.waiting.wait_until_page_does_not_contain(text=text, timeout=timeout)
     
-    @keyword("I wait until page does not contain ${text}")
+    @keyword("I wait until page does not contain ${text} text")
     def wait_until_page_does_not_contain(self, text: str) -> None:
         self.wait_until_page_does_not_contain_timeout(text=text, timeout=None)
     
@@ -113,18 +113,18 @@ class Waiting(LibraryComponent):
     def wait_until_element_is_enabled(self, locator: Union[WebElement, None, str]) -> None:
         self.wait_until_element_is_enabled_timeout(locator=locator, timeout=None)
     
-    @keyword("I wait until element ${locator} contains ${text} with ${timeout} timeout")
+    @keyword("I wait until element ${locator} contains ${text} text with ${timeout} timeout")
     def wait_until_element_contains_timeout(self, locator: Union[WebElement, None, str], text: str, timeout: Optional[timedelta] = None) -> None:
         self.waiting.wait_until_element_contains(locator=locator, text=text, timeout=timeout)
     
-    @keyword("I wait until element ${locator} contains ${text}")
+    @keyword("I wait until element ${locator} contains ${text} text")
     def wait_until_element_contains(self, locator: Union[WebElement, None, str], text: str) -> None:
         self.wait_until_element_contains_timeout(locator=locator, text=text, timeout=None)
     
-    @keyword("I wait until element ${locator} does not contains ${text} with ${timeout} timeout")
+    @keyword("I wait until element ${locator} does not contains ${text} text with ${timeout} timeout")
     def wait_until_element_does_not_contain_timeout(self, locator: Union[WebElement, None, str], text: str, timeout: Optional[timedelta] = None) -> None:
         self.waiting.wait_until_element_does_not_contain(locator=locator, text=text, timeout=timeout)
     
-    @keyword("I wait until element ${locator} does not contains ${text}")
+    @keyword("I wait until element ${locator} does not contains ${text} text")
     def wait_until_element_does_not_contain(self, locator: Union[WebElement, None, str], text: str) -> None:
         self.wait_until_element_does_not_contain_timeout(locator=locator, text=text, timeout=None)
