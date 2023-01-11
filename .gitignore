@@ -114,3 +114,6 @@ report.json
 # NPM
 node_modules/
 uninstall.txt
+
+# Others
+.vscode/
