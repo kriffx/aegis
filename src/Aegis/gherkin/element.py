@@ -120,7 +120,7 @@ class Element(LibraryComponent):
     def get_text(self, locator: Union[WebElement, str]) -> str:
         return self.element.get_text(locator=locator)
 
-    @keyword("I clear element X text")
+    @keyword("I clear element ${locator} text")
     def clear_element_text(self, locator: Union[WebElement, str]) -> None:
         self.element.clear_element_text(locator=locator)
 
@@ -176,7 +176,7 @@ class Element(LibraryComponent):
     def scroll_element_into_view(self, locator: Union[WebElement, str]) -> None:
         self.element.scroll_element_into_view(locator=locator)
 
-    @keyword
+    @keyword("I drag ${locator} and drop ${target}")
     def drag_and_drop(self, locator: Union[WebElement, str], target: Union[WebElement, str]) -> None:
         self.element.drag_and_drop(locator=locator, target=target)
 
