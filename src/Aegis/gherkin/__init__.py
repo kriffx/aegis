@@ -5,4 +5,5 @@ from .element import Element
 from .form import Form
 from .frames import Frames
 from .javascript import JavaScript
+from .screenshot import Screenshot
 from .waiting import Waiting
