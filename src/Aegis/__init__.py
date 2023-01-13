@@ -1,7 +1,7 @@
 from datetime import timedelta
 from typing import Optional
 from SeleniumLibrary import SeleniumLibrary
-from .gherkin import Alert, Browser, Cookie, Element, Form, Frames, Waiting
+from .gherkin import Alert, Browser, Cookie, Element, Form, Frames, JavaScript, Waiting
 
 class Aegis(SeleniumLibrary):
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
@@ -23,5 +23,6 @@ class Aegis(SeleniumLibrary):
             Element(self),
             Form(self),
             Frames(self),
+            JavaScript(self),
             Waiting(self),
         ])
