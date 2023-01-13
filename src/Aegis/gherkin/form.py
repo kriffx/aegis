@@ -1,15 +1,17 @@
 from typing import Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import FormElementKeywords
+from SeleniumLibrary.keywords import FormElementKeywords, WaitingKeywords
 from selenium.webdriver.remote.webelement import WebElement
 
 class Form(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.form = FormElementKeywords(ctx)
+        self.waiting = WaitingKeywords(ctx)
     
     @keyword("I submit ${locator} form")
     def submit_form_locator(self, locator: Union[WebElement, None, str] = None) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.submit_form(locator=locator)
     
     @keyword("I submit form")
@@ -18,14 +20,17 @@ class Form(LibraryComponent):
 
     @keyword("I assert checkbox ${locator} should be selected")
     def checkbox_should_be_selected(self, locator: Union[WebElement, str]) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.checkbox_should_be_selected(locator=locator)
 
     @keyword("I assert checkbox ${locator} sould not be selected")
     def checkbox_should_not_be_selected(self, locator: Union[WebElement, str]) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.checkbox_should_not_be_selected(locator=locator)
 
     @keyword("I assert page should contain checkbox ${locator} with ${loglevel} level")
     def page_should_contain_checkbox_level(self, locator: Union[WebElement, str], loglevel: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.page_should_contain_checkbox(locator=locator, loglevel=loglevel)
     
     @keyword("I assert page should contain checkbox ${locator}")
@@ -42,14 +47,17 @@ class Form(LibraryComponent):
 
     @keyword("I select checkbox ${locator}")
     def select_checkbox(self, locator: Union[WebElement, str]) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.select_checkbox(locator=locator)
 
     @keyword("I unselect checkbox ${locator}")
     def unselect_checkbox(self, locator: Union[WebElement, str]) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.unselect_checkbox(locator=locator)
 
     @keyword("I assert page should contain radio button ${locator} with ${loglevel} level")
     def page_should_contain_radio_button_level(self, locator: Union[WebElement, str], loglevel: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.page_should_contain_radio_button(locator=locator, loglevel=loglevel)
     
     keyword("I assert page should contain radio button ${locator}")
@@ -78,18 +86,22 @@ class Form(LibraryComponent):
 
     @keyword("I choose ${locator} file ${file_path}")
     def choose_file(self, locator: Union[WebElement, str], file_path: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.choose_file(locator=locator, file_path=file_path)
 
     @keyword("I input ${password} password ${locator}")
     def input_password(self, locator: Union[WebElement, str], password: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.input_password(locator=locator, password=password)
 
     @keyword("I input ${text} text ${locator}")
     def input_text(self, locator: Union[WebElement, str], text: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.input_text(locator=locator, text=text)
 
     @keyword("I assert page should contain textfield ${locator} with ${loglevel} level")
     def page_should_contain_textfield_level(self, locator: Union[WebElement, str], loglevel: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.page_should_contain_textfield(locator=locator, loglevel=loglevel)
     
     @keyword("I assert page should contain textfield ${locator}")
@@ -106,22 +118,27 @@ class Form(LibraryComponent):
 
     @keyword("I assert textfield ${locator} should contain ${expected} text")
     def textfield_should_contain(self, locator: Union[WebElement, str], expected: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.textfield_should_contain(locator=locator, expected=expected)
 
     @keyword("I assert textfield ${locator} value should be ${expected} text")
     def textfield_value_should_be(self, locator: Union[WebElement, str], expected: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.textfield_value_should_be(locator=locator, expected=expected)
 
     @keyword("I assert textarea ${locator} should contain ${expected} text")
     def textarea_should_contain(self, locator: Union[WebElement, str], expected: str) -> None:
-        self.textarea_should_contain(locator=locator, expected=expected)
+        self.waiting.wait_until_element_is_visible(locator=locator)
+        self.form.textarea_should_contain(locator=locator, expected=expected)
 
     @keyword("I assert textarea ${locator} value should be ${expected} text")
     def textarea_value_should_be(self, locator: Union[WebElement, str], expected: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.textarea_value_should_be(locator=locator, expected=expected)
 
     @keyword("I assert page should contain button ${locator} with ${loglevel} level")
     def page_should_contain_button_level(self, locator: Union[WebElement, str], loglevel: str) -> None:
+        self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.page_should_contain_button(locator=locator, loglevel=loglevel)
     
     @keyword("I assert page should contain button ${locator}")
