@@ -7,4 +7,5 @@ from .frames import Frames
 from .javascript import JavaScript
 from .screenshot import Screenshot
 from .select import Select
+from .table import Table
 from .waiting import Waiting
