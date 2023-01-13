@@ -9,3 +9,4 @@ from .screenshot import Screenshot
 from .select import Select
 from .table import Table
 from .waiting import Waiting
+from .window import Window
