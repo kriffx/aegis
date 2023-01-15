@@ -8,11 +8,11 @@ class Window(LibraryComponent):
         self.window = WindowKeywords(ctx)
     
     @keyword("I switch ${browser} window ${locator} with ${timeout} timeout")
-    def switch_window_timeout(self, locator: Union[list, str], timeout: Optional[str], browser: str) -> None:
+    def switch_window_timeout(self, browser: str, locator: Union[list, str], timeout: Optional[str]) -> None:
         self.window.switch_window(locator=locator, timeout=timeout, browser=browser)
     
     @keyword("I switch ${browser} window ${locator}")
-    def switch_window(self, locator: Union[list, str], browser: str) -> None:
+    def switch_window(self, browser: str, locator: Union[list, str]) -> None:
         self.switch_window_timeout(locator=locator, timeout=None, browser=browser)
 
     @keyword("I close window")
