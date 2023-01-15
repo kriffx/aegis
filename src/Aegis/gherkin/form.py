@@ -81,7 +81,7 @@ class Form(LibraryComponent):
         self.form.radio_button_should_not_be_selected(group_name=group_name)
 
     @keyword("I select ${value} radio button ${group_name}")
-    def select_radio_button(self, group_name: str, value: str) -> None:
+    def select_radio_button(self, value: str, group_name: str) -> None:
         self.form.select_radio_button(group_name=group_name, value=value)
 
     @keyword("I choose ${locator} file ${file_path}")
@@ -90,12 +90,12 @@ class Form(LibraryComponent):
         self.form.choose_file(locator=locator, file_path=file_path)
 
     @keyword("I input ${password} password ${locator}")
-    def input_password(self, locator: Union[WebElement, str], password: str) -> None:
+    def input_password(self, password: str, locator: Union[WebElement, str]) -> None:
         self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.input_password(locator=locator, password=password)
 
     @keyword("I input ${text} text ${locator}")
-    def input_text(self, locator: Union[WebElement, str], text: str) -> None:
+    def input_text(self, text: str, locator: Union[WebElement, str]) -> None:
         self.waiting.wait_until_element_is_visible(locator=locator)
         self.form.input_text(locator=locator, text=text)
 
