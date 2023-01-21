@@ -107,6 +107,7 @@ test/results/
 .idea/LibraryName.iml
 
 # Robot Framework
+configs/
 tests/
 results/
 report.json
