@@ -1,26 +1,28 @@
-import base64
-from datetime import timedelta
-from typing import List, Any
+from webdrivermanager import ChromeDriverManager, GeckoDriverManager, EdgeChromiumDriverManager, IEDriverManager, OperaChromiumDriverManager
+from SeleniumLibrary.base import LibraryComponent, keyword
+from SeleniumLibrary.keywords import BrowserManagementKeywords
 from robot.libraries.BuiltIn import BuiltIn
 from robot.api import logger
 from ScreenCapLibrary import ScreenCapLibrary
-from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import BrowserManagementKeywords, JavaScriptKeywords, WaitingKeywords
-from webdrivermanager import ChromeDriverManager, GeckoDriverManager, EdgeChromiumDriverManager, IEDriverManager, OperaChromiumDriverManager
+import base64
+from datetime import timedelta
+from typing import List, Any
 from ..config import Config
+from .waiting import Waiting
+from .javascript import JavaScript
 
 class Browser(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.browser_management = BrowserManagementKeywords(ctx)
-        self.javascript = JavaScriptKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.javascript = JavaScript(ctx)
+        self.waiting = Waiting(ctx)
         self.recorder = ScreenCapLibrary()
         self.config = Config()
         self.built = BuiltIn()
 
     @keyword("I open ${browser} browser with ${parameters}")
-    def open_browser_parameters(self, browser: str, parameters: dict) -> str:
+    def open_browser_parameters(self, browser: str, parameters: dict) -> str:      
         if self._has_video_recorder():
             id = self.built.get_variable_value("${TEST_NAME}")
             self.recorder.start_video_recording(alias=id, fps=10, embed=False)

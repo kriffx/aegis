@@ -1,13 +1,14 @@
 from typing import Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import TableElementKeywords, WaitingKeywords
+from SeleniumLibrary.keywords import TableElementKeywords
 from selenium.webdriver.remote.webelement import WebElement
+from .waiting import Waiting
 
 class Table(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.table = TableElementKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.waiting = Waiting(ctx)
     
     @keyword("I get table ${locator} cell ${row}/${column} with ${loglevel} level")
     def get_table_cell_level(self, locator: Union[WebElement, None, str], row: int, column: int, loglevel: str) -> str:

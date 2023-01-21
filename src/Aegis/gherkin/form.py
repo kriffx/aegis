@@ -1,13 +1,14 @@
 from typing import Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import FormElementKeywords, WaitingKeywords
+from SeleniumLibrary.keywords import FormElementKeywords
 from selenium.webdriver.remote.webelement import WebElement
+from .waiting import Waiting
 
 class Form(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.form = FormElementKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.waiting = Waiting(ctx)
     
     @keyword("I submit ${locator} form")
     def submit_form_locator(self, locator: Union[WebElement, None, str] = None) -> None:

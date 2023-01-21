@@ -1,13 +1,14 @@
 from typing import List, Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import SelectElementKeywords, WaitingKeywords
+from SeleniumLibrary.keywords import SelectElementKeywords
 from selenium.webdriver.remote.webelement import WebElement
+from .waiting import Waiting
 
 class Select(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.select = SelectElementKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.waiting = Waiting(ctx)
     
     @keyword("I get ${locator} list items visible labels")
     def get_list_items_labels(self, locator: Union[WebElement, str]) -> List[str]:

@@ -1,7 +1,8 @@
 from typing import Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import ScreenshotKeywords, WaitingKeywords
+from SeleniumLibrary.keywords import ScreenshotKeywords
 from selenium.webdriver.remote.webelement import WebElement
+from .waiting import Waiting
 
 DEFAULT_FILENAME_PAGE = "selenium-screenshot-{index}.png"
 DEFAULT_FILENAME_ELEMENT = "selenium-element-screenshot-{index}.png"
@@ -11,7 +12,7 @@ class Screenshot(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.screenshot = ScreenshotKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.waiting = Waiting(ctx)
     
     @keyword("I set screenshot directory ${path}")
     def set_screenshot_directory(self, path: Union[None, str]) -> str:

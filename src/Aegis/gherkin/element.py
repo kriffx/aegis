@@ -1,13 +1,14 @@
 from typing import List, Optional, Tuple, Union
 from SeleniumLibrary.base import LibraryComponent, keyword
-from SeleniumLibrary.keywords import ElementKeywords, WaitingKeywords
+from SeleniumLibrary.keywords import ElementKeywords
 from selenium.webdriver.remote.webelement import WebElement
+from .waiting import Waiting
 
 class Element(LibraryComponent):
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
         self.element = ElementKeywords(ctx)
-        self.waiting = WaitingKeywords(ctx)
+        self.waiting = Waiting(ctx)
     
     @keyword("I get webelement")
     def get_webelement(self, locator: Union[WebElement, str]) -> WebElement:
