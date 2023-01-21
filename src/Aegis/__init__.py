@@ -1,7 +1,7 @@
+from .gherkin import Alert, Browser, Cookie, Element, Form, Frames, JavaScript, Screenshot, Select, Table, Waiting, Window
+from SeleniumLibrary import SeleniumLibrary
 from datetime import timedelta
 from typing import Optional
-from SeleniumLibrary import SeleniumLibrary
-from .gherkin import Alert, Browser, Cookie, Element, Form, Frames, JavaScript, Screenshot, Select, Table, Waiting, Window
 
 class Aegis(SeleniumLibrary):
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
@@ -10,7 +10,7 @@ class Aegis(SeleniumLibrary):
         self,
         timeout=timedelta(seconds=5),
         implicit_wait=timedelta(seconds=0),
-        run_on_failure="Capture Page Screenshot",
+        run_on_failure="I Capture Page Screenshot Embed",
         screenshot_root_directory: Optional[str] = None,
         plugins: Optional[str] = None,
         event_firing_webdriver: Optional[str] = None,
