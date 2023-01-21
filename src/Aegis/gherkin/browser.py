@@ -1,8 +1,13 @@
+import base64
 from datetime import timedelta
 from typing import List, Any
+from robot.libraries.BuiltIn import BuiltIn
+from robot.api import logger
+from ScreenCapLibrary import ScreenCapLibrary
 from SeleniumLibrary.base import LibraryComponent, keyword
 from SeleniumLibrary.keywords import BrowserManagementKeywords, JavaScriptKeywords, WaitingKeywords
 from webdrivermanager import ChromeDriverManager, GeckoDriverManager, EdgeChromiumDriverManager, IEDriverManager, OperaChromiumDriverManager
+from ..config import Config
 
 class Browser(LibraryComponent):
     def __init__(self, ctx):
@@ -10,9 +15,16 @@ class Browser(LibraryComponent):
         self.browser_management = BrowserManagementKeywords(ctx)
         self.javascript = JavaScriptKeywords(ctx)
         self.waiting = WaitingKeywords(ctx)
+        self.recorder = ScreenCapLibrary()
+        self.config = Config()
+        self.built = BuiltIn()
 
     @keyword("I open ${browser} browser with ${parameters}")
     def open_browser_parameters(self, browser: str, parameters: dict) -> str:
+        if self._has_video_recorder():
+            id = self.built.get_variable_value("${TEST_NAME}")
+            self.recorder.start_video_recording(alias=id, fps=10, embed=False)
+
         url = parameters.get("url", "about:blank")
         alias = parameters.get("alias", None)
         remote_url = parameters.get("remote_url", False)
@@ -46,10 +58,12 @@ class Browser(LibraryComponent):
     @keyword("I close all browsers")
     def close_all_browsers(self) -> None:
         self.browser_management.close_all_browsers()
+        self._stop_video()
     
     @keyword("I close browser")
     def close_browser(self) -> None:
         self.browser_management.close_browser()
+        self._stop_video()
 
     @keyword("I switch browser ${index_or_alias}")
     def switch_browser(self, index_or_alias: str) -> None:
@@ -153,3 +167,13 @@ class Browser(LibraryComponent):
     @keyword("I set ${value} browser implicit wait")
     def set_browser_implicit_wait(self, value: timedelta) -> None:
         self.browser_management.set_browser_implicit_wait(value=value)
+    
+    def _has_video_recorder(self) -> bool:
+        return bool(self.config.env("video_recorder", False))
+    
+    def _stop_video(self) -> None:
+        if self._has_video_recorder():
+            id = self.built.get_variable_value("${TEST_NAME}")
+            output_video_file = self.recorder.stop_video_recording(alias=id)
+            with open(str(output_video_file), "rb") as video_file:
+                logger.info("<video width=\"100%\" controls muted><source src=\"data:video/webm;base64,{}\" type=\"video/webm\">Your browser does not support the video tag.</video>".format(base64.b64encode(video_file.read()).decode("utf-8")), html=True)
