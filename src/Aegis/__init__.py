@@ -1,4 +1,4 @@
-from .gherkin import Alert, Browser, Cookie, Element, Form, Frames, JavaScript, Screenshot, Select, Table, Waiting, Window
+from .keywords import Alert, Browser, Cookie, Element, Form, Frames, JavaScript, Screenshot, Select, Table, Waiting, Window
 from SeleniumLibrary import SeleniumLibrary
 from datetime import timedelta
 from typing import Optional
